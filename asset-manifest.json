@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/project_weather-widget/static/css/main.af089a31.css",
+    "main.js": "/project_weather-widget/static/js/main.ebba768d.js",
+    "static/media/settings_icon.svg": "/project_weather-widget/static/media/settings_icon.e920cc08cd6503bbbaa8de0bc9132d85.svg",
+    "index.html": "/project_weather-widget/index.html",
+    "main.af089a31.css.map": "/project_weather-widget/static/css/main.af089a31.css.map",
+    "main.ebba768d.js.map": "/project_weather-widget/static/js/main.ebba768d.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.af089a31.css",
+    "static/js/main.ebba768d.js"
+  ]
+}
