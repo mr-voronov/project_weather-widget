@@ -1,0 +1,8 @@
+.settings {
+    margin-top: 30px;
+
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    row-gap: 5px;
+}

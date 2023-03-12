@@ -1,0 +1,28 @@
+:root {
+  --bg-color-blue: #255FF3;
+  --font-color-white: #ffffff;
+}
+
+.weather-app {
+  padding: 15px;
+  min-width: fit-content;
+
+  position: relative;
+
+  border-radius: 5px;
+  background-color: var(--bg-color-blue);
+
+  font-size: 16px;
+  color: var(--font-color-white);
+}
+
+.settings-icon {
+  width: 22px;
+  height: 22px;
+
+  position: absolute;
+  top: 10px;
+  right: 10px;
+
+  cursor: pointer;
+}

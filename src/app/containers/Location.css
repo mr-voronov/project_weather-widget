@@ -1,0 +1,11 @@
+.location {
+    padding: 5px;
+
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+}
+
+/* .location__label {} */
+
+/* .location__select {} */

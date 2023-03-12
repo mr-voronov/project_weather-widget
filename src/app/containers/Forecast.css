@@ -1,0 +1,128 @@
+:root {
+    --scrollbar-color-platinum: #E5E4E2;
+    --scrollbar-color-smoke: #848884;
+}
+
+
+/* General */
+.forecast {
+    margin-top: 30px;
+
+    display: flex;
+}
+
+.forecast__item {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: center;
+}
+
+
+/* CurrForecast.js */
+.forecast--curr {
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.forecast--curr * {
+    width: 100%;
+}
+
+.forecast--curr .city-name {
+    margin-bottom: 4px;
+    font-size: 1.1rem;
+}
+
+.forecast--curr .temp {
+    font-size: 2.2rem;
+}
+
+.forecast--curr .wx-icon {
+    width: 50px;
+    
+    position: relative;
+    left: -8px;
+    bottom: -4px;
+}
+
+.forecast--curr .wx-descr {
+    margin-bottom: 3px;
+}
+
+.forecast--curr .temp-min,
+.forecast--curr .temp-max {
+    width: fit-content;
+    font-size: .9rem;
+}
+
+.forecast--curr .temp-min {
+    margin-right: 8px;
+}
+
+/* DayForecast.js */
+.forecast--day {
+    max-width: 270px;
+    padding-bottom: 15px;
+
+    flex-direction: row;
+    flex-wrap: nowrap;
+    column-gap: 10px;
+
+    overflow-y: hidden;
+    overflow-x: scroll;
+}
+
+.forecast--day .forecast__item {
+    flex-direction: column;
+}
+
+.forecast--day .temp {
+    font-size: 1.3rem;
+}
+
+.forecast--day::-webkit-scrollbar {
+    height: .6rem;
+}
+
+.forecast--day::-webkit-scrollbar-track {
+    border-radius: 5px;
+    background-color: var(--scrollbar-color-platinum);
+}
+
+.forecast--day::-webkit-scrollbar-thumb {
+    background-color: var(--scrollbar-color-smoke);
+    border-radius: 5px;
+}
+
+
+/* FiveDayForecast.js */
+.forecast--five-days {
+    flex-direction: column;
+}
+
+.forecast--five-days .forecast__item {
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.forecast--five-days .day-name {
+    min-width: 85px;
+    font-size: 1.1rem;
+}
+
+.forecast--five-days .wx-icon {
+    margin-left: 15px;
+    margin-right: 10px;
+    width: 50px;
+
+    position: relative;
+    top: -2px;
+}
+
+.forecast--five-days .temp-min,
+.forecast--five-days .temp-max {
+    min-width: 35px;
+
+    font-size: 1.3rem;
+}
