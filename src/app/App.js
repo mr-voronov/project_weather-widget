@@ -31,7 +31,8 @@ class App extends Component {
     const coordInLocalStor = JSON.parse(localStorage.getItem("coordinates"));
     const { latitude, longitude } = this.state.coordinates;
 
-    // won`t work for very first load, but for next tabs
+    // won`t work for very first load
+    // makes all the new tabs use coordinates and forecast type set by Settings.js
     if (coordInLocalStor) {
       this.setState((prevState) => ({
         ...prevState,
@@ -42,7 +43,6 @@ class App extends Component {
         }
       }));
     } else if (latitude === null || longitude === null) {
-      console.log(2)
         getGeoposition().then((data) => {
           this.setState((prevState) => ({
             ...prevState,
@@ -53,7 +53,9 @@ class App extends Component {
             }
           }));
         }).catch(error => {
-          console.log(error.message);
+          // Error (browser): Network error. Check DevTools console for more information.
+          // Error (custom): Geolocation API is not supported in your browser
+          console.error(error.message);
 
           this.setState((prevState) => ({
             ...prevState,
@@ -82,6 +84,8 @@ class App extends Component {
         },
         coordinates
     }));
+
+    localStorage.setItem("coordinates", JSON.stringify(coordinates));
   }
 
   setForecastType(type) {
@@ -92,6 +96,8 @@ class App extends Component {
       },
       forecastType: type
     }));
+
+    localStorage.setItem("forecastType", type);
   }
 
   showHideSettings() {
@@ -121,25 +127,25 @@ class App extends Component {
     const isHidden = this.state.settings.isHidden;
 
     if (error) {
-      const promise = new Promise((resolve) => setTimeout(() => {
-          this.setState((prevState) => ({
-              ...prevState,
-              error: null
-          }));
-      }, 2000));
-
-      promise.catch((error) => {
-          console.error(error);
-      });
+      // Custom delay to inform user about some problem by showing the error in console and message on the screen for 2 sec
+      // Set error in state to "null" and proceed proceed to step where location is set by user manually
+      // setTimeout(() => {
+      //   this.setState((prevState) => ({
+      //       ...prevState,
+      //       error: null
+      //   }));
+      // }, 2000);
 
       return (
-          <div>
-              <p>{this.state.error}</p>
+          <div className="weather-app">
+            Something went wrong :&#40;
           </div>
       );
     } else if (!isLoaded) {
       return (
-          <div>Loading...</div>
+          <div className="weather-app">
+            Loading...
+          </div>
       );
     } else if (latitude === null || longitude === null) {
       return (
@@ -159,7 +165,7 @@ class App extends Component {
         return(
           <div className="weather-app">
             <SettingsIcon className="settings-icon" onClick={() => this.showHideSettings()}/>
-            <Settings state={{coordinates: this.state.coordinates, forecastType: this.state.forecastType}} setState={{setCoordinates: this.setCoordinates, setForecastType: this.setForecastType}} />
+            <Settings state={{forecastType: this.state.forecastType}} setState={{setCoordinates: this.setCoordinates, setForecastType: this.setForecastType}} />
           </div>
         );
       }

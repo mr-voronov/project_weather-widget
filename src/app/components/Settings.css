@@ -6,3 +6,7 @@
     flex-wrap: nowrap;
     row-gap: 5px;
 }
+
+.settings * {
+    cursor: pointer;
+}

@@ -26,6 +26,8 @@ class Forecast extends Component {
                 data
             }));
         }).catch(error => {
+            console.error(error.message);
+
             this.setState((prevState) => ({
                 ...prevState,
                 isLoaded: true,
@@ -39,8 +41,10 @@ class Forecast extends Component {
         const { error, isLoaded, data } = this.state;
 
         if (error) {
+            // no timeout function because no posible action yet if forecast data is not awailable
+
             return(
-                <div>{error}</div>
+                <div className="forecast">Forecast isn`t awailable :&#40;</div>
             );
         } else if (!isLoaded) {
             return(

@@ -8,6 +8,7 @@ class Location extends Component {
     constructor(props) {
         super(props);
 
+        // should be also an error
         this.state = {
             location: {
                 countryName: null,
@@ -44,7 +45,7 @@ class Location extends Component {
         const setCoordinates = this.props.setState;
 
         if (countryName === null) {
-            let data = new Set();
+            let data = new Set(); // unique country names
 
             cityList.forEach((element) => {
                 data.add(element.country);
@@ -60,12 +61,12 @@ class Location extends Component {
             );
         } else if (cityName === null) {
             const currCountry = this.state.location.countryName;
-            const data = {};
-            let cities = new Set();
+            const data = new Map(); // city name as key and whole object as value
+            let cities = new Set(); // unique city names (in chosen country)
             
             cityList.forEach((element) => {
                 if(element.country === currCountry) {
-                    data[element.name] = element;
+                    data.set(element.name, element);
                     cities.add(element.name);
                 } 
             });

@@ -2,7 +2,7 @@ function DayForecast(props) {
     const data = props.data;
 
     const dayWeatherData = (data) => {
-        const weatherData = data.list;
+        const weatherData = data.list; // only 3 hour forecast data
         const dayWeatherData = new Map();
 
         for (const [index, element] of weatherData.entries()) {

@@ -5,7 +5,7 @@ function FiveDayForecast(props) {
         const res = new Map();
 
         data.forEach((elem) => {
-            const date = new Date(elem.dt * 1000);
+            const date = new Date(elem.dt * 1000); // convert to unix (seconds) from default js (miliseconds)
             const weekday = new Intl.DateTimeFormat("en-US", {weekday: "long"}).format(date);
 
             if (!res.has(weekday)) {
@@ -20,11 +20,13 @@ function FiveDayForecast(props) {
 
     const dailyWeatherData = () => {
         const result = [];
+        const indexWDByDay = indexWeatherDataByDay(data);
 
-        const days = Array.from( indexWeatherDataByDay(data).keys() );
+        // array from map keys to access key index
+        const days = Array.from( indexWDByDay.keys() ); // MapIterator {'Sunday', 'Monday', …}
         let currTime = null;
         
-        for (const [key, value] of indexWeatherDataByDay(data).entries()) {
+        for (const [key, value] of indexWDByDay.entries()) { // MapIterator {'Sunday' => Array(4), 'Monday' => Array(8),  …}
             let dayName = (key === days[0]) ? "Today" : key;
             let wxIcon = null;
             let minTemp = null;
@@ -33,15 +35,16 @@ function FiveDayForecast(props) {
             // setting currTime for getting weather condition (clear sky, clouds...) in ~ 24h from now
             if (key === days[0]) {
                 const currDateTime = value[0].dt_txt;
-                currTime = currDateTime.split(' ')[1];
+                currTime = currDateTime.split(' ')[1]; // ['2023-03-19', '12:00:00']
             }
     
+            // iterating over arrays (6) of objects (8 for a whole day) with 3 hour weather data 
             for (let i = 0; i < value.length; i++) {
                 // getting weather condition icon for a future days at this time
-                const time = value[i].dt_txt.split(' ')[1];
+                const time = value[i].dt_txt.split(" ")[1];
     
                 if (key === days[5]) { // special case for the last day
-                    if (wxIcon === null) {
+                    if (wxIcon === null) { // needs to be set only once
                         wxIcon = value[value.length - 1].weather[0].icon;
                     }
                 } else {

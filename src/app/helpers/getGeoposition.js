@@ -12,7 +12,6 @@ async function getGeoposition() {
             }
 
             function error(err) {
-                // throw new Error(`${err.code}: ${err.message}`);
                 reject(new Error(`${err.code}: ${err.message}`));
             }
 

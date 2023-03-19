@@ -21,6 +21,7 @@
 
 /* CurrForecast.js */
 .forecast--curr {
+    max-width: 135px;
     flex-direction: row;
     flex-wrap: wrap;
 }
